@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matrix Operations Tool</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <script src="{% static 'script.js' %}" defer></script>
+    <link rel="icon" href="/static/favicon.ico">
+
+</head>
+<body>
+    <div class="container">
+        <h1>Matrix Operations Tool</h1>
+        <form id="matrixForm" method="POST">
+            {% csrf_token %}
+            <div class="operation">
+                <label for="operation">Choose Operation:</label>
+                <select name="operation" id="operation" required>
+                    <option value="add">Matrix Addition</option>
+                    <option value="subtract">Matrix Subtraction</option>
+                    <option value="multiply">Matrix Multiplication</option>
+                    <option value="transpose">Matrix Transpose</option>
+                    <option value="determinant">Matrix Determinant</option>
+                </select>
+            </div>
+
+            <div class="matrix-input">
+                <label for="matrix1">Enter Matrix 1:</label>
+                <textarea name="matrix1" id="matrix1" rows="5" required></textarea>
+            </div>
+
+            <div class="matrix-input" id="matrix2Div">
+                <label for="matrix2">Enter Matrix 2 (for Add, Subtract, Multiply only):</label>
+                <textarea name="matrix2" id="matrix2" rows="5"></textarea>
+            </div>
+
+            <button type="button" onclick="processMatrixOperation()">Submit</button>
+        </form>
+
+        <h2>Result:</h2>
+        <pre id="result"></pre>
+    </div>
+</body>
+</html>
